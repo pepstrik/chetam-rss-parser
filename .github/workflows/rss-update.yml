@@ -1,0 +1,28 @@
+name: Update RSS JSON
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # каждый день в 6 утра по UTC
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install feedparser
+      - name: Run RSS to JSON script
+        run: python rss_to_json.py
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add episodes.json
+          git commit -m "Update episodes.json" || echo "No changes to commit"
+          git push
