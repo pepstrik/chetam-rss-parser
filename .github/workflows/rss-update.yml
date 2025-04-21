@@ -23,9 +23,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git remote set-url origin https://$GH_PERSONAL_TOKEN@github.com/pepstrik/chetam-rss-parser.git
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/pepstrik/chetam-rss-parser.git
           git add episodes.json
           git commit -m "Update episodes.json" || echo "No changes to commit"
           git push
-        env:
-          GH_PERSONAL_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
