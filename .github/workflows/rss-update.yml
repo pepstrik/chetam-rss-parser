@@ -27,3 +27,5 @@ jobs:
           git add episodes.json
           git commit -m "Update episodes.json" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
