@@ -28,5 +28,4 @@ jobs:
           git commit -m "Update episodes.json" || echo "No changes to commit"
           git push
         env:
-          GH_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
-
+          GH_PERSONAL_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
