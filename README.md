@@ -34,8 +34,7 @@ Python · feedparser · GitHub Actions · JSON · cron
 
 ---
 
-![CI](https://github.com/pepstrik/chetam-rss-parser/actions/workflows/ci.yml/badge.svg)  
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Update RSS JSON](https://github.com/pepstrik/chetam-rss-parser/actions/workflows/update-rss.yml/badge.svg)
 
 ---
 
