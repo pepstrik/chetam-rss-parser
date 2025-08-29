@@ -31,5 +31,11 @@ Python · feedparser · GitHub Actions · JSON · cron
 - JSON feed: [episodes.json](https://pepstrik.github.io/chetam-rss-parser/episodes.json)  
 - Website integration: [chetamnovosti.ru](https://chetamnovosti.ru)  
 - Used in: [CheTamNovostiBot](https://github.com/pepstrik/CheTamNovostiBot)
+  
+---
+
+![Update RSS JSON](https://github.com/pepstrik/chetam-rss-parser/actions/workflows/rss-update.yml/badge.svg)
+
+---
 
 > Версия на русском: [README.md](README.md)
