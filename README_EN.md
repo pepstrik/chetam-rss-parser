@@ -14,6 +14,14 @@ Python script for parsing the *Che Tam Novosti* podcast RSS feed and auto-genera
 - Schedule automatic updates via GitHub Actions (cron)  
 - Publish JSON to GitHub Pages → consumed by the website and bots  
 
+## Future improvements
+
+- Extend metadata from RSS (e.g. `duration`, `image`, `guid`).  
+- Save episode dates in ISO-8601 (UTC) for accurate sorting.  
+- Implement atomic writes of `episodes.json` to avoid overwriting on network errors.  
+- Add simple CI tests (JSON validity, required fields).  
+- Configure error monitoring/logging for parsing failures.
+
 ## Tech Stack
 Python · feedparser · GitHub Actions · JSON · cron  
 
