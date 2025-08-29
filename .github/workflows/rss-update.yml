@@ -2,30 +2,46 @@ name: Update RSS JSON
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # каждый день в 6 утра по UTC
+    - cron: '0 6 * * *'  # каждый день в 06:00 UTC (≈09:00 МСК, ≈01:00 America/Chicago)
   workflow_dispatch:
+
+permissions:
+  contents: write  # нужно для push из workflow
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/checkout@v4
         with:
-          python-version: '3.x'
+          persist-credentials: false  # будем использовать GITHUB_TOKEN явно
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
       - name: Install dependencies
-        run: pip install feedparser
+        run: |
+          python -m pip install -U pip
+          pip install feedparser
+
       - name: Run RSS to JSON script
         run: python rss_to_json.py
-      - name: Commit and push changes
+
+      - name: Configure Git author
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/pepstrik/chetam-rss-parser.git
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push changes (only if changed)
+        run: |
           git add episodes.json
-          git commit -m "Update episodes.json" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Update episodes.json"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
