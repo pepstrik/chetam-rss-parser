@@ -2,7 +2,7 @@ name: Update RSS JSON
 
 on:
   schedule:
-    - cron: '0 6 * * *'   # каждый день в 06:00 UTC (≈09:00 МСК, ≈01:00 Chicago)
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -22,8 +22,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: '3.11'   # ← убрали cache: 'pip'
 
       - name: Install dependencies
         run: |
