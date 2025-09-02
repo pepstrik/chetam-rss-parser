@@ -6,11 +6,21 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # нужно для push из workflow
+  contents: write
+
+# не запускаем параллельные ранны одного и того же workflow
+concurrency:
+  group: update-rss-json
+  cancel-in-progress: false
 
 jobs:
   build:
+    # запускаем только из основной ветки (поменяй, если у тебя не main)
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # если файлы не в корне, раскомментируй и укажи папку
+    # working-directory: ./scripts
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
