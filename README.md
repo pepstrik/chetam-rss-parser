@@ -34,7 +34,7 @@ Python · feedparser · GitHub Actions · JSON · cron
 
 ---
 
-![Update RSS JSON](https://github.com/pepstrik/chetam-rss-parser/actions/workflows/update-rss.yml/badge.svg)
+![Update RSS JSON](https://github.com/pepstrik/chetam-rss-parser/actions/workflows/rss-update.yml/badge.svg)
 
 ---
 
